@@ -1,0 +1,262 @@
+﻿@using System.Globalization
+@{
+    var year = 2023;
+    var tempDate = new DateTime(year, 1, 1);
+    var calendar = new GregorianCalendar();
+}
+
+<div>
+    <a id="@tempDate.ToString("yyyy")"></a>
+
+    <h1 class="text-center" style="margin:50px 0 50px 0;">2023 Daily Planner</h1>
+
+    @*Output month links*@
+    <div id="month-links" class="text-center">
+        <a href="#Jan">Jan</a>
+        <a href="#Feb">Feb</a>
+        <a href="#Mar">Mar</a>
+        <a href="#Apr">Apr</a>
+        <a href="#May">May</a>
+        <a href="#Jun">Jun</a>
+        <a href="#Jul">Jul</a>
+        <a href="#Aug">Aug</a>
+        <a href="#Sep">Sep</a>
+        <a href="#Oct">Oct</a>
+        <a href="#Nov">Nov</a>
+        <a href="#Dec">Dec</a>
+    </div>
+
+    <a id="to-do-lists"></a>
+    <div id="to-do-list-links">
+        <div>
+            <a href="#work-to-do-list">Work to do list</a>
+        </div>
+
+        <div>
+            <a href="#personal-to-do-list">Personal to do list</a>
+        </div>
+    </div>
+
+    <div class="new-page"></div>
+
+    @* Work to do list *@
+    <div class="new-page"></div>
+
+    <a id="work-to-do-list"></a>
+    <h2>Work To Do List</h2>
+    <a href="#@tempDate.ToString("yyyy")" style="float:right; position:relative; top:-60px">@tempDate.ToString("yyyy")</a>
+    <a href="#personal-to-do-list" style="float:left; position:relative; top:-60px">Personal</a>
+
+    <br />
+    <table class="rows">
+        @for (int x = 0; x < 22; x++)
+        {
+            <tr class="bottom-line">
+                <td colspan="2">&nbsp;</td>
+            </tr>
+        }
+    </table>
+
+    @* Personal to do list *@
+    <div class="new-page"></div>
+
+    <a id="personal-to-do-list"></a>
+    <h2>Personal To Do List</h2>
+    <a href="#@tempDate.ToString("yyyy")" style="float:right; position:relative; top:-60px">@tempDate.ToString("yyyy")</a>
+    <a href="#work-to-do-list" style="float:left; position:relative; top:-60px">Work</a>
+
+    <br />
+    <table class="rows">
+        @for (int x = 0; x < 22; x++)
+        {
+            <tr class="bottom-line">
+                <td colspan="2">&nbsp;</td>
+            </tr>
+        }
+    </table>
+
+    @*Create month pages (and their day pages)*@
+    <div class="new-page"></div>
+
+    @for (int monthNumber = 1; monthNumber <= 12; monthNumber++)
+    {
+        var daysInMonth = calendar.GetDaysInMonth(year, monthNumber);
+
+        <a id="@tempDate.ToString("MMM")"></a>
+        <h2>@tempDate.ToString("MMMM yyyy")</h2>
+        <a href="#@tempDate.ToString("yyyy")" style="float:right; position:relative; top:-60px">@tempDate.ToString("yyyy")</a>
+
+        <div style="clear:both"></div>
+
+        <div class="day-of-week">Mon</div>
+        <div class="day-of-week">Tue</div>
+        <div class="day-of-week">Wed</div>
+        <div class="day-of-week">Thu</div>
+        <div class="day-of-week">Fri</div>
+        <div class="day-of-week">Sat</div>
+        <div class="day-of-week">Sun</div>
+
+        var firstDayOfMonth = new DateTime(year, tempDate.Month, 1);
+
+        var dayOfWeek = (int)firstDayOfMonth.DayOfWeek; // Sunday = 0, Saturday = 6
+        int blankDays = 0;
+
+        if (dayOfWeek == 0) // Su
+            blankDays = 6;
+
+        if (dayOfWeek == 1) // Mo
+            blankDays = 0;
+
+        if (dayOfWeek == 2) // Tu
+            blankDays = 1;
+
+        if (dayOfWeek == 3) // We
+            blankDays = 2;
+
+        if (dayOfWeek == 4) // Th
+            blankDays = 3;
+
+        if (dayOfWeek == 5) // Fr
+            blankDays = 4;
+
+        if (dayOfWeek == 6) // Sa
+            blankDays = 5;
+
+        @for (int skipCount = 0; skipCount < blankDays; skipCount++)
+        {
+            <div class="day" style="border:1px solid #fff;">&nbsp;</div>
+        }
+
+        @for (int dayInMonth = 1; dayInMonth <= daysInMonth; dayInMonth++)
+        {
+            var dayDate = new DateTime(year, tempDate.Month, dayInMonth);
+
+            <div class="day">
+                <a href="#@dayDate.ToString("ddMMyyyy")">@dayDate.ToString("dd")</a>
+            </div>
+        }
+        <div style="clear:both;margin-top:30px;"></div>
+        <h2 style="padding-top:50px;font-size:0.9em; text-align:left;">Month notes:</h2>
+
+        <table class="rows">
+            @for (int r = 0; r < 5; r++)
+            {
+                <tr class="bottom-line">
+                    <td>&nbsp;</td>
+                </tr>
+            }
+        </table>
+
+        tempDate = tempDate.AddMonths(1);
+
+        <div class="new-page"></div>
+    }
+
+    @* Now the days pages *@
+    @{
+        var firstDay = new DateTime(year, 1, 1);
+        var daysInYear = calendar.GetDaysInYear(year);
+
+        for (int d = 1; d <= daysInYear; d++)
+        {
+            <a id="@firstDay.ToString("ddMMyyyy")"></a>
+            <h2>@firstDay.ToFriendlyString()</h2>
+            <a href="#@firstDay.ToString("MMM")" style="float:right; position:relative; top:-65px">@firstDay.ToString("MMMM")</a>
+
+            <div style="float:left; position:relative; top:-60px">
+                <a href="#to-do-lists">To do</a>
+            </div>
+            <br />
+
+            <table class="rows">
+                <tr>
+                    <th class="heading" colspan="2">Notes</th>
+                </tr>
+                @for (int x = 0; x < 15; x++)
+                {
+                    <tr class="bottom-line">
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                }
+                <tr class="bottom-line">
+                    <th class="heading" style="width:66%">Other</th>
+                    <th class="heading">Habits/Wellbeing</th>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr class="bottom-line">
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr class="bottom-line">
+                                <td style="width:30%; text-align:right;">Water:</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td style="text-align:right;">Reading:</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td style="text-align:right;">Pushups:</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td style="text-align:right;">Exercise:</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td style="text-align:right;">Stretching:</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr class="bottom-line">
+                                <td style="text-align:right;">Patterns:</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            //Extra page for notes
+            <div class="new-page"></div>
+            
+            <h2>@firstDay.ToFriendlyString() Continued..</h2>
+            <br />
+            <table class="rows">
+                <tr>
+                    <th class="heading" colspan="2">Notes</th>
+                </tr>
+                @for (int x = 0; x < 21; x++)
+                {
+                    <tr class="bottom-line">
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                }
+            </table>
+
+            firstDay = firstDay.AddDays(1);
+            <div class="new-page"></div>
+        }
+    }
+
+</div>
+
