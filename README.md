@@ -1,6 +1,9 @@
 # Creating Remarkable Templates (HTML to PDF)
 C#/.NET code to create a yearly planner template PDF for your Remarkable device.
 
+## Walkthrough video
+To view a video explaining the solution, see here [Video Link to go here when created]
+
 ## Solution structure
 There are two projects in the Solution
 - HtmlToPdf.WebApplication
