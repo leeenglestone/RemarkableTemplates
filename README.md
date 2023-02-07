@@ -22,6 +22,22 @@ Note: When you run the web application locally, the layout may look odd i.e. lar
 
 Note: You will need to update the console application `Credentials.cs` with your own Syncfusion LicenseKey OR replace this code with a different HTML to PDF library.
 
+## Want a preview without a licence?
+You can still create the PDF without a Syncfusion license key, but it will include "Syncfusion Trial" wording.
+
+To do this, in `src\HtmlToPdf.ConsoleApplication\Program.cs`
+
+Comment out the following lines
+
+`  
+if (string.IsNullOrEmpty(Credentials.SyncfusionLicenseKey))
+    throw new Exception("You need to provide your own Syncfusion license key or find another tool that will generate a PDF from HTML");
+    `
+
+and 
+
+`Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Credentials.SyncfusionLicenseKey);`
+    
 
 ## How I designed my ideal yearly planner template
 First I designed my ideal layout
@@ -32,6 +48,9 @@ Then I coded it up in HTML, which when converted to PDF looked like this (links 
 
 Then when uploaded to my Remarkable device I can navigate to any day/page and jot notes all over it.
 ![PDF on device](images/remarkable3.png)
+
+## I just want the template PDF file
+That's fine, if you're happy with the PDF planner layout i've created you can get your own copy of the file at [templates\2023 Yearly Planner v7.pdf](templates\2023 Yearly Planner v7.pdf)
 
 ## Keep updated!
 To see similar projects like this, follow me on:

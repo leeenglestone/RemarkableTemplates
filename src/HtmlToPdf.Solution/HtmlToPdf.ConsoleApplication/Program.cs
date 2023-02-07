@@ -5,8 +5,7 @@ using Syncfusion.Pdf;
 if (string.IsNullOrEmpty(Credentials.SyncfusionLicenseKey))
     throw new Exception("You need to provide your own Syncfusion license key or find another tool that will generate a PDF from HTML");
 
-Syncfusion.Licensing.SyncfusionLicenseProvider
-    .RegisterLicense(Credentials.SyncfusionLicenseKey);
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Credentials.SyncfusionLicenseKey);
 
 Console.WriteLine("Creating PDF...");
 
