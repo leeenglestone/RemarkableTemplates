@@ -2,7 +2,9 @@
 C#/.NET code to create a yearly planner template PDF for your Remarkable device.
 
 ## Walkthrough video
-To view a video explaining the solution, see here [Video Link to go here when created]
+To view a video explaining the solution, see here: 
+
+[https://www.youtube.com/watch?v=qYMb_yIzIJs](https://www.youtube.com/watch?v=qYMb_yIzIJs)
 
 ## Solution structure
 There are two projects in the Solution
