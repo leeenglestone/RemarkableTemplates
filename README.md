@@ -23,7 +23,8 @@ Note: When you run the web application locally, the layout may look odd i.e. lar
 Note: You will need to update the console application `Credentials.cs` with your own Syncfusion LicenseKey OR replace this code with a different HTML to PDF library.
 
 ## Want a preview without a licence?
-You can still create the PDF without a Syncfusion license key, but it will include "Syncfusion Trial" wording.
+You can still create the PDF without a Syncfusion license key, but it will include "Syncfusion Trial" wording, see the output 
+[templates/2023-Yearly-Planner-v7-no-key.pdf](templates/2023-Yearly-Planner-v7-no-key.pdf) file for example.
 
 To do this, in `src\HtmlToPdf.ConsoleApplication\Program.cs`
 
