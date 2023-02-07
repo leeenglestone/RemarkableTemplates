@@ -50,7 +50,7 @@ Then when uploaded to my Remarkable device I can navigate to any day/page and jo
 ![PDF on device](images/remarkable3.png)
 
 ## I just want the template PDF file
-That's fine, if you're happy with the PDF planner layout i've created, you can get your own copy of the file at [templates/2023-Yearly-Planner-v7.pdf](RemarkableTemplates/blob/main/templates/2023-Yearly-Planner-v7.pdf)
+That's fine, if you're happy with the PDF planner layout i've created, you can get your own copy of the file at [templates/2023-Yearly-Planner-v7.pdf](main/templates/2023-Yearly-Planner-v7.pdf)
 
 ## Keep updated!
 To see similar projects like this, follow me on:
