@@ -1,0 +1,51 @@
+﻿@using System.Globalization;
+
+@{
+}
+
+@for(int x=1; x < 52; x++)
+{
+    var weekNumber = $"week{x}";
+
+    var weekStartDate = ISOWeek.ToDateTime(2023, x, DayOfWeek.Monday);
+
+    <a name="@weekNumber"></a>
+    <h2>Week #@x (w/c @weekStartDate.ToString("dddd dd MMMM yyyy"))</h2>
+    <a href="#@weekStartDate.ToString("MMM")" class="month-link">@weekStartDate.ToString("MMMM")</a>
+    <div class="top-left">
+        <a href="#personal-to-do-list">Personal</a> - <a href="#work-to-do-list">Work</a>
+    </div>
+    <br />
+    <div style="text-align:center; position:relative; top:-40px">
+        @{
+            var thisWeeksMon = weekStartDate;
+            var thisWeeksTue = weekStartDate.AddDays(1);
+            var thisWeeksWed = weekStartDate.AddDays(2); ;
+            var thisWeeksThu = weekStartDate.AddDays(3); ;
+            var thisWeeksFri = weekStartDate.AddDays(4); ;
+            var thisWeeksSat = weekStartDate.AddDays(5); ;
+            var thisWeeksSun = weekStartDate.AddDays(6); ;
+        }
+
+        <a href="#@weekNumber">Week</a> -
+        <a href="#@thisWeeksMon.ToString("ddMMyyyy")">Mon</a> <span> - </span>
+        <a href="#@thisWeeksTue.ToString("ddMMyyyy")">Tue</a><span> - </span>
+        <a href="#@thisWeeksWed.ToString("ddMMyyyy")">Wed</a><span> - </span>
+        <a href="#@thisWeeksThu.ToString("ddMMyyyy")">Thu</a><span> - </span>
+        <a href="#@thisWeeksFri.ToString("ddMMyyyy")">Fri</a><span> - </span>
+        <a href="#@thisWeeksSat.ToString("ddMMyyyy")">Sat</a><span> - </span>
+        <a href="#@thisWeeksSun.ToString("ddMMyyyy")">Sun</a>
+    </div>
+    <table class="rows">
+        <tr>
+            <th class="heading" colspan="2">Notes</th>
+        </tr>
+        @for (int y = 0; y < 21; y++)
+        {
+            <tr class="bottom-line">
+                <td colspan="2">&nbsp;</td>
+            </tr>
+        }
+    </table>
+    <div class="new-page"></div>
+}

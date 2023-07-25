@@ -1,0 +1,19 @@
+﻿@model ToDoListViewModel
+@{
+    var tempDate = Model.TempDate;
+}
+
+<a id="personal-to-do-list"></a>
+<h2>Personal To Do List</h2>
+<a href="#@tempDate.ToString("yyyy")" style="float:right; position:relative; top:-60px">@tempDate.ToString("yyyy")</a>
+<a href="#work-to-do-list" class="top-left">Work</a>
+
+<br />
+<table class="rows">
+    @for (int x = 0; x < 22; x++)
+    {
+        <tr class="bottom-line">
+            <td colspan="2">&nbsp;</td>
+        </tr>
+    }
+</table>

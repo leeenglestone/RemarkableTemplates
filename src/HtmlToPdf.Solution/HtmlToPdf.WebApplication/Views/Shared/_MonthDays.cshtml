@@ -1,0 +1,101 @@
+﻿@using System.Globalization;
+@model MonthViewModel
+@{
+    var year = Model.Year;
+    var calendar = Model.Calendar;
+
+    var firstDay = new DateTime(year, 1, 1);
+    var daysInYear = calendar.GetDaysInYear(year);
+
+    DateTime thisWeeksMon = firstDay;
+    DateTime thisWeeksTue = firstDay;
+    DateTime thisWeeksWed = firstDay;
+    DateTime thisWeeksThu = firstDay;
+    DateTime thisWeeksFri = firstDay;
+    DateTime thisWeeksSat = firstDay;
+    DateTime thisWeeksSun = firstDay;
+
+    for (int d = 1; d <= daysInYear; d++)
+    {
+        if (firstDay.DayOfWeek == DayOfWeek.Monday)
+        {
+            thisWeeksMon = firstDay;
+            thisWeeksTue = firstDay.AddDays(1);
+            thisWeeksWed = firstDay.AddDays(2);
+            thisWeeksThu = firstDay.AddDays(3);
+            thisWeeksFri = firstDay.AddDays(4);
+            thisWeeksSat = firstDay.AddDays(5);
+            thisWeeksSun = firstDay.AddDays(6);
+        }
+
+        <a id="@firstDay.ToString("ddMMyyyy")"></a>
+        <h2>@firstDay.ToFriendlyString()</h2>
+        <a href="#@firstDay.ToString("MMM")" class="month-link">@firstDay.ToString("MMMM")</a>
+
+        <div class="top-left">
+            <a href="#personal-to-do-list">Personal</a> - <a href="#work-to-do-list">Work</a>
+        </div>
+        <br />
+
+        var weekNumber = $"week{ISOWeek.GetWeekOfYear(thisWeeksMon)}";
+
+        <div style="text-align:center; position:relative; top:-40px">
+            <a href="#@weekNumber">Week</a> -
+            <a href="#@thisWeeksMon.ToString("ddMMyyyy")">Mon</a> <span> - </span>
+            <a href="#@thisWeeksTue.ToString("ddMMyyyy")">Tue</a> <span> - </span>
+            <a href="#@thisWeeksWed.ToString("ddMMyyyy")">Wed</a> <span> - </span>
+            <a href="#@thisWeeksThu.ToString("ddMMyyyy")">Thu</a> <span> - </span>
+            <a href="#@thisWeeksFri.ToString("ddMMyyyy")">Fri</a> <span> - </span>
+            <a href="#@thisWeeksSat.ToString("ddMMyyyy")">Sat</a> <span> - </span>
+            <a href="#@thisWeeksSun.ToString("ddMMyyyy")">Sun</a>
+        </div>
+
+        <table class="rows">
+            <tr>
+                <th class="heading" colspan="2">Notes</th>
+            </tr>
+            @for (int x = 0; x < 21; x++)
+            {
+                <tr class="bottom-line">
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+            }
+        </table>
+
+        //Extra page for notes
+        <div class="new-page"></div>
+
+        <h2>@firstDay.ToFriendlyString() (2)</h2>
+        <a href="#@firstDay.ToString("MMM")" class="month-link">@firstDay.ToString("MMMM")</a>
+
+        <div class="top-left">
+            <a href="#personal-to-do-list">Personal</a> - <a href="#work-to-do-list">Work</a>
+        </div>
+        <br />
+        <div style="text-align:center; position:relative; top:-40px">
+            <a href="#@weekNumber">Week</a> -
+            <a href="#@thisWeeksMon.ToString("ddMMyyyy")">Mon</a> <span> - </span>
+            <a href="#@thisWeeksTue.ToString("ddMMyyyy")">Tue</a><span> - </span>
+            <a href="#@thisWeeksWed.ToString("ddMMyyyy")">Wed</a><span> - </span>
+            <a href="#@thisWeeksThu.ToString("ddMMyyyy")">Thu</a><span> - </span>
+            <a href="#@thisWeeksFri.ToString("ddMMyyyy")">Fri</a><span> - </span>
+            <a href="#@thisWeeksSat.ToString("ddMMyyyy")">Sat</a><span> - </span>
+            <a href="#@thisWeeksSun.ToString("ddMMyyyy")">Sun</a>
+        </div>
+
+        <table class="rows">
+            <tr>
+                <th class="heading" colspan="2">Notes</th>
+            </tr>
+            @for (int x = 0; x < 21; x++)
+            {
+                <tr class="bottom-line">
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+            }
+        </table>
+
+        firstDay = firstDay.AddDays(1);
+        <div class="new-page"></div>
+    }
+}

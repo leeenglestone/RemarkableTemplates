@@ -1,0 +1,80 @@
+﻿@model HtmlToPdf.WebApplication.Models.MonthViewModel
+@{
+    var calendar = Model.Calendar;
+    var year = Model.Year;
+    var tempDate = Model.TempDate;
+}
+
+@for (int monthNumber = 1; monthNumber <= 12; monthNumber++)
+{
+    var daysInMonth = calendar.GetDaysInMonth(year, monthNumber);
+
+    <a id="@tempDate.ToString("MMM")"></a>
+    <h2>@tempDate.ToString("MMMM yyyy")</h2>
+    <a href="#@tempDate.ToString("yyyy")" class="top-right">@tempDate.ToString("yyyy")</a>
+
+    <div style="clear:both"></div>
+
+    <div class="day-of-week">Mon</div>
+    <div class="day-of-week">Tue</div>
+    <div class="day-of-week">Wed</div>
+    <div class="day-of-week">Thu</div>
+    <div class="day-of-week">Fri</div>
+    <div class="day-of-week">Sat</div>
+    <div class="day-of-week">Sun</div>
+
+    var firstDayOfMonth = new DateTime(year, tempDate.Month, 1);
+
+    var dayOfWeek = (int)firstDayOfMonth.DayOfWeek; // Sunday = 0, Saturday = 6
+    int blankDays = 0;
+
+    if (dayOfWeek == 0) // Su
+        blankDays = 6;
+
+    if (dayOfWeek == 1) // Mo
+        blankDays = 0;
+
+    if (dayOfWeek == 2) // Tu
+        blankDays = 1;
+
+    if (dayOfWeek == 3) // We
+        blankDays = 2;
+
+    if (dayOfWeek == 4) // Th
+        blankDays = 3;
+
+    if (dayOfWeek == 5) // Fr
+        blankDays = 4;
+
+    if (dayOfWeek == 6) // Sa
+        blankDays = 5;
+
+    @for (int skipCount = 0; skipCount < blankDays; skipCount++)
+    {
+        <div class="day" style="border:1px solid #fff;">&nbsp;</div>
+    }
+
+    @for (int dayInMonth = 1; dayInMonth <= daysInMonth; dayInMonth++)
+    {
+        DateTime dayDate = new DateTime(year, tempDate.Month, dayInMonth);
+
+        <div class="day">
+            <a href="#@dayDate.ToString("ddMMyyyy")">@dayDate.ToString("dd")</a>
+        </div>
+    }
+    <div style="clear:both;margin-top:30px;"></div>
+    <h2 style="padding-top:50px;font-size:0.9em; text-align:left;">Month notes:</h2>
+
+    <table class="rows">
+        @for (int r = 0; r < 5; r++)
+        {
+            <tr class="bottom-line">
+                <td>&nbsp;</td>
+            </tr>
+        }
+    </table>
+
+    tempDate = tempDate.AddMonths(1);
+
+    <div class="new-page"></div>
+}
