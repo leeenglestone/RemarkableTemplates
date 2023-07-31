@@ -6,6 +6,7 @@ To view a video explaining the solution, see here:
 
 [https://www.youtube.com/watch?v=qYMb_yIzIJs](https://www.youtube.com/watch?v=qYMb_yIzIJs)
 
+
 ## Solution structure
 There are two projects in the Solution
 - HtmlToPdf.WebApplication
@@ -53,7 +54,10 @@ Then when uploaded to my Remarkable device I can navigate to any day/page and jo
 ![PDF on device](images/remarkable3.png)
 
 ## I just want the template PDF file
-That's fine, if you're happy with the PDF planner layout i've created, you can get your own copy of the file at [templates/2023-Yearly-Planner-v7.pdf](templates/2023-Yearly-Planner-v7.pdf)
+That's fine, if you're happy with the PDF planner layout i've created, you can get your own copy of the file at [templates/2023-Yearly-Planner-v9.pdf](templates/2023-Yearly-Planner-v9.pdf)
+
+## Update 31st July 2023
+The template has been updated to include day links and weekly summary pages.
 
 ## Keep updated!
 To see similar projects like this, follow me on:
