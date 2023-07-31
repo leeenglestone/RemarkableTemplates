@@ -1,12 +1,8 @@
 ﻿@using System.Globalization;
 
-@{
-}
-
-@for(int x=1; x < 52; x++)
+@for (int x = 1; x < 52; x++)
 {
     var weekNumber = $"week{x}";
-
     var weekStartDate = ISOWeek.ToDateTime(2023, x, DayOfWeek.Monday);
 
     <a name="@weekNumber"></a>
@@ -20,11 +16,11 @@
         @{
             var thisWeeksMon = weekStartDate;
             var thisWeeksTue = weekStartDate.AddDays(1);
-            var thisWeeksWed = weekStartDate.AddDays(2); ;
-            var thisWeeksThu = weekStartDate.AddDays(3); ;
-            var thisWeeksFri = weekStartDate.AddDays(4); ;
-            var thisWeeksSat = weekStartDate.AddDays(5); ;
-            var thisWeeksSun = weekStartDate.AddDays(6); ;
+            var thisWeeksWed = weekStartDate.AddDays(2);
+            var thisWeeksThu = weekStartDate.AddDays(3);
+            var thisWeeksFri = weekStartDate.AddDays(4);
+            var thisWeeksSat = weekStartDate.AddDays(5);
+            var thisWeeksSun = weekStartDate.AddDays(6);
         }
 
         <a href="#@weekNumber">Week</a> -

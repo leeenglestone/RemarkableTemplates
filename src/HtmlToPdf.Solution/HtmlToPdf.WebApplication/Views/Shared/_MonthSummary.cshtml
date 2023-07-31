@@ -1,4 +1,5 @@
-﻿@model HtmlToPdf.WebApplication.Models.MonthViewModel
+﻿@using System.Globalization;
+@model HtmlToPdf.WebApplication.Models.MonthViewModel
 @{
     var calendar = Model.Calendar;
     var year = Model.Year;
@@ -15,6 +16,7 @@
 
     <div style="clear:both"></div>
 
+    <div class="week-start-link">&nbsp;</div>
     <div class="day-of-week">Mon</div>
     <div class="day-of-week">Tue</div>
     <div class="day-of-week">Wed</div>
@@ -49,6 +51,11 @@
     if (dayOfWeek == 6) // Sa
         blankDays = 5;
 
+    <div style="clear:both"></div>
+
+    var weekNumberLink = $"#week{ISOWeek.GetWeekOfYear(firstDayOfMonth)}";
+    <a href="@weekNumberLink" class="week-link"></a>
+
     @for (int skipCount = 0; skipCount < blankDays; skipCount++)
     {
         <div class="day" style="border:1px solid #fff;">&nbsp;</div>
@@ -58,10 +65,18 @@
     {
         DateTime dayDate = new DateTime(year, tempDate.Month, dayInMonth);
 
+        if (dayDate.DayOfWeek == DayOfWeek.Monday && dayDate.Day != 1)
+        {
+            weekNumberLink = $"#week{ISOWeek.GetWeekOfYear(dayDate)}";
+
+            <a href="@weekNumberLink" class="week-link"></a>
+        }
+
         <div class="day">
             <a href="#@dayDate.ToString("ddMMyyyy")">@dayDate.ToString("dd")</a>
         </div>
     }
+
     <div style="clear:both;margin-top:30px;"></div>
     <h2 style="padding-top:50px;font-size:0.9em; text-align:left;">Month notes:</h2>
 
