@@ -1,9 +1,13 @@
 ﻿@using System.Globalization;
 
+@{
+    var year = 2024;
+}
+
 @for (int x = 1; x < 52; x++)
 {
     var weekNumber = $"week{x}";
-    var weekStartDate = ISOWeek.ToDateTime(2023, x, DayOfWeek.Monday);
+    var weekStartDate = ISOWeek.ToDateTime(year, x, DayOfWeek.Monday);
 
     <a name="@weekNumber"></a>
     <h2>Week #@x (w/c @weekStartDate.ToString("dddd dd MMMM yyyy"))</h2>

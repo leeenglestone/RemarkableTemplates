@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 @using System
 @{
-    var year = 2023;
+    var year = 2024;
     var tempDate = new DateTime(year, 1, 1);
     var calendar = new GregorianCalendar();
 }
@@ -9,7 +9,7 @@
 <div>
     <a id="@tempDate.ToString("yyyy")"></a>
 
-    <h1 class="text-center" style="margin:50px 0 50px 0;">2023 Daily Planner</h1>
+    <h1 class="text-center" style="margin:50px 0 50px 0;">@year Daily Planner</h1>
 
     @Html.Partial("_MonthLinks")
 

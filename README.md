@@ -56,8 +56,9 @@ Then when uploaded to my Remarkable device I can navigate to any day/page and jo
 ## I just want the template PDF file
 That's fine, if you're happy with the PDF planner layout i've created, you can get your own copy of the file at [templates/2023-Yearly-Planner-v9.pdf](templates/2023-Yearly-Planner-v9.pdf)
 
-## Update 31st July 2023
-The template has been updated to include day links and weekly summary pages.
+## 2024 Version
+Someone reached out asking for version for 2024, so here it is
+[templates/2024-Yearly-Planner-v9.pdf](templates/2024-Yearly-Planner-v9.pdf)
 
 ## Keep updated!
 To see similar projects like this, follow me on:
